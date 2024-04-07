@@ -1,5 +1,5 @@
 import "./globals.css";
-import { AntdRegistry } from '@ant-design/nextjs-registry';
+// import { AntdRegistry } from '@ant-design/nextjs-registry';
 import Root from "./root";
 
 
@@ -14,11 +14,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
-        <AntdRegistry>
+        {/* <AntdRegistry> */}
           <Root>
             {children}
           </Root>
-        </AntdRegistry>
+        {/* </AntdRegistry> */}
       </body>
     </html>
   );
