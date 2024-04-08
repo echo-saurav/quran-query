@@ -1,4 +1,5 @@
 import "./globals.css";
+import { Analytics } from '@vercel/analytics/react';
 import { AntdRegistry } from '@ant-design/nextjs-registry';
 import Root from "./root";
 
@@ -19,6 +20,7 @@ export default function RootLayout({ children }) {
             {children}
           </Root>
         </AntdRegistry>
+        <Analytics />
       </body>
     </html>
   );
