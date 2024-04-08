@@ -40,4 +40,15 @@ export const get_explanations = async (chapter_no, start_verse_no, limit) => {
     return query_data
 }
 
+export const get_projection = async () => {
+    const data = await fetch("/api/getProjection", {
+        method: 'GET',
+        headers: {
+            "Content-Type": "application/json",
+        }
+    }).then(response => response.json())
+        .catch(e => [])
+
+    return data
+}
 

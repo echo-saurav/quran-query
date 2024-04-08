@@ -1,6 +1,6 @@
 'use client'
 
-import { Affix, AutoComplete, Flex,  Input, Layout, List, Space, Switch, Typography } from "antd";
+import { Affix, AutoComplete, Collapse, Flex,  Input, Layout, List, Space, Switch, Typography } from "antd";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { getLanguageSettings, getQueries, saveLanguageSettings, saveQuery } from "../utils/LocalSettings";
@@ -37,6 +37,13 @@ export default function Search() {
         })
     }
 
+    useState(() => {
+        if (query) {
+            saveQuery(query)
+            onSearch(query)
+        }
+
+    }, [])
     const get_search_autocomplete = () => {
         return getQueries().reverse().map((v, i) => {
             return {
@@ -168,7 +175,7 @@ function Ayah({ title, en, bn, ar, distance,
                 </Title>
             </Flex>
 
-            {/* <Collapse size="small"
+            <Collapse size="small"
                 defaultActiveKey={[
                     enableArabic ? 'ar' : 'ar_none',
                     enableEnglish ? 'en' : 'en_none',
@@ -179,7 +186,7 @@ function Ayah({ title, en, bn, ar, distance,
                     { key: 'en', label: "English", children: <TextList textArray={en} /> },
                     { key: 'bn', label: "Bengali", children: <TextList textArray={bn} /> },
                 ]}
-            /> */}
+            />
         </div>
     )
 }

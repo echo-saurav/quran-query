@@ -1,4 +1,22 @@
 html,body{
   margin: 0;
   padding: 0;
+  background: black;
+}
+
+
+.intro{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 500px;
+  width: 90%;
+
+  backdrop-filter: blur(4px);
+  background: rgba(0, 0, 0, .5);
+  padding: 70px 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.5), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  /* -webkit-filter: blur(8px);  */
 }

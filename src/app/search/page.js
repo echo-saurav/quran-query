@@ -4,11 +4,8 @@ import Search from "./Search";
 
 export default function SearchPage() {
 
-    return <>
-        <Suspense>
-
-            <Search />
-        </Suspense>
-    </>
+    return <Suspense>
+        <Search />
+    </Suspense>
 
 }
