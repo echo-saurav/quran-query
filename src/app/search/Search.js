@@ -30,7 +30,7 @@ export default function Search() {
         saveQuery(q)
         setQuery(q)
 
-        search_similar_quran_verses(q, 30).then(_data => {
+        search_similar_quran_verses(q, 15).then(_data => {
             setVerses(_data)
             setLoading(false)
             // set url without reload site
