@@ -98,7 +98,7 @@ export default function Search() {
                     saveLanguageSettings(v, enableBangla, enableArabic)
                 }} />
 
-            {isLoading ? <LoadingCards /> :
+            {isLoading ? <LoadingCards query={query} /> :
                 <SearchResult
                     verses={verses}
                     enableBangla={enableBangla}

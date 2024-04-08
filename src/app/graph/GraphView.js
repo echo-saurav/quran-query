@@ -25,7 +25,6 @@ export default function GraphView() {
     }
     useEffect(() => {
         get_projection().then((d) => {
-            console.log(d)
             setVectors(d)
         })
     }, [])
