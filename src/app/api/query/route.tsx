@@ -20,7 +20,7 @@ export async function POST(req: Request) {
       }
     }).then(response => response.json())
       .catch(e => {
-        console.log(`query error for ${query} in ${process.env.WEAVIATE_API}`, e)
+        
         return []
       })
 

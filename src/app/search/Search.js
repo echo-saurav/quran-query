@@ -30,11 +30,12 @@ export default function Search() {
         setQuery(q)
 
         search_similar_quran_verses(q, 10).then(_data => {
-            console.log(_data)
             setVerses(_data)
             setLoading(false)
             // set url without reload site
-            window.history.replaceState(null, '', `/search?search=${q}`);
+            if(window){
+                window.history.replaceState(null, '', `/search?search=${q}`);
+            }
         })
     }
 

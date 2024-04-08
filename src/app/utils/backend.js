@@ -13,7 +13,6 @@ export const search_similar_quran_verses = async (query, limit) => {
         }
     }).then(response => response.json())
         .catch(e => {
-            console.log(e)
             return []
         })
 
@@ -27,7 +26,6 @@ export const get_explanations = async (chapter_no, start_verse_no, limit) => {
         'start_verse_no': start_verse_no,
         'limit': limit
     })
-    console.log("get_explanations", payload)
     const query_data = await fetch("/api/getTafsir", {
         method: 'POST',
         body: payload,

@@ -42,15 +42,15 @@ export function saveQuery(str) {
     // Retrieve existing array from local storage or create a new one if it doesn't exist
     let arrayFromLocalStorage = JSON.parse(localStorage.getItem('queries') || '[]');
 
-    if (!arrayFromLocalStorage.includes(str)) {
+    if (!arrayFromLocalStorage.includes(str.trim())) {
 
         // Add the new string to the array
-        arrayFromLocalStorage.push(str);
+        arrayFromLocalStorage.push(str.trim());
 
         // Check if the array length exceeds 100
         if (arrayFromLocalStorage.length > 10) {
             // Remove the last item from the array
-            arrayFromLocalStorage.splice(-1, 1);
+            arrayFromLocalStorage.splice(0, 1);
         }
 
         // Save the updated array back to local storage

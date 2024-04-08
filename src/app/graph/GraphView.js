@@ -8,7 +8,7 @@ import { get_projection } from "../utils/backend";
 const { Title, Paragraph, Link } = Typography;
 
 export default function GraphView() {
-    const graphRef = useRef(null)
+    const graphRef = useForw(null)
     const [vectors, setVectors] = useState(null)
     const [open, setOpen] = useState(false)
     const [selectedNode, setSelectedNode] = useState(null)
@@ -40,7 +40,7 @@ export default function GraphView() {
 
 
     function handleClick(node) {
-        console.log(node)
+        
         setSelectedNode(node)
         setOpen(true)
 
@@ -96,8 +96,8 @@ export default function GraphView() {
                     nodeRelSize={10}
                     enableNodeDrag={false}
                     nodeLabel={node => node.surah_name}
-                    nodeAutoColorBy="surah_name"
-                    // nodeAutoColorBy={node => getUniqueColor(node.verse_en[0].chapter)}
+                    // nodeAutoColorBy="surah_name"
+                    nodeAutoColorBy={node => getUniqueColor(node.verse_en[0].chapter)}
                     nodeResolution={15}
                     // onNodeClick={handleClick}
                     onNodeClick={doubleClickHandler}

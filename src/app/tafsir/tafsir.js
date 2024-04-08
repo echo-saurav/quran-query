@@ -92,9 +92,6 @@ export default function Tafsir() {
                 if (v && v[0]) {
                     setData(v[0])
                     setTotal_verse(getTotal(Number(chapter_no)))
-                    console.log(v[0])
-
-
                 }
             })
         } else {
@@ -102,7 +99,6 @@ export default function Tafsir() {
                 if (v && v[0]) {
                     setData(v[0])
                     setTotal_verse(getTotal(Number(chapter_no)))
-                    console.log(v[0])
 
                 }
             })
