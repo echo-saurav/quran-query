@@ -87,7 +87,7 @@ export default function GraphView() {
     return (
         <div style={{ background: "black" }}>
 
-            <ForceGraphWrapper
+            {vectors && <ForceGraphWrapper
                 onEngineStop={() => { setLoading(false) }}
                 ref={graphRef}
                 nodeOpacity={.8}
@@ -102,7 +102,7 @@ export default function GraphView() {
                 nodeResolution={15}
                 // onNodeClick={handleClick}
                 onNodeClick={doubleClickHandler}
-            />
+            />}
 
             {(!vectors || loading) &&
                 <Flex style={{ height: "100vh" }} justify="center" align="center">
