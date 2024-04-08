@@ -5,8 +5,8 @@ import { AutoComplete, Button, Input, Typography } from "antd";
 import { useState } from "react";
 import { getQueries, saveQuery } from "./utils/LocalSettings";
 import SearchSuggestions from "./utils/SearchSuggestion";
-const { Title, Paragraph, Text} = Typography;
 
+const { Title, Paragraph, Text} = Typography;
 
 export default function Home(){
     const [query, setQuery] = useState("")
