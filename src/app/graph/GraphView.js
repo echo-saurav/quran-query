@@ -1,6 +1,6 @@
 'use client'
-import { ArrowLeftOutlined, InfoOutlined, MenuOutlined, SearchOutlined } from "@ant-design/icons";
-import { Button, Drawer, FloatButton, List, Typography } from "antd";
+import { ArrowLeftOutlined, InfoOutlined, LoadingOutlined, MenuOutlined, SearchOutlined } from "@ant-design/icons";
+import { Button, Drawer, Flex, FloatButton, List, Spin, Typography } from "antd";
 import ForceGraphWrapper from "./ForceWrapper"
 import { useEffect, useRef, useState } from "react";
 import { get_projection } from "../utils/backend";
@@ -76,6 +76,7 @@ export default function GraphView() {
         }
     }
 
+
     function getUniqueColor(numbers) {
         const hue = numbers * (340 / 114);
         const saturation = 70
@@ -85,7 +86,8 @@ export default function GraphView() {
 
     return (
         <div style={{ background: "black" }}>
-            {vectors &&
+            {vectors ?
+
                 <ForceGraphWrapper
                     ref={graphRef}
                     nodeOpacity={.8}
@@ -100,7 +102,10 @@ export default function GraphView() {
                     nodeResolution={15}
                     // onNodeClick={handleClick}
                     onNodeClick={doubleClickHandler}
-                />
+                /> :
+                <Flex style={{height:"100vh"}} justify="center" align="center">
+                    <Spin indicator={<LoadingOutlined style={{ fontSize: 100 }} spin />} />
+                </Flex>
             }
             <FloatButton.Group
                 type="primary"

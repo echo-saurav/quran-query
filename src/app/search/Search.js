@@ -1,10 +1,11 @@
 'use client'
 
-import { Affix, AutoComplete, Collapse, Flex,  Input, Layout, List, Space, Switch, Typography } from "antd";
+import { Affix, AutoComplete, Collapse, Divider, Flex, Input, Layout, List, Skeleton, Space, Switch, Typography } from "antd";
 import { useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { getLanguageSettings, getQueries, saveLanguageSettings, saveQuery } from "../utils/LocalSettings";
 import { search_similar_quran_verses } from "../utils/backend";
+import { ArrowRightOutlined, InfoCircleFilled } from "@ant-design/icons";
 
 
 const { Title, Paragraph, Text, Link } = Typography;
@@ -97,15 +98,41 @@ export default function Search() {
                     saveLanguageSettings(v, enableBangla, enableArabic)
                 }} />
 
-            <SearchResult
-                verses={verses}
-                enableBangla={enableBangla}
-                enableArabic={enableArabic}
-                enableEnglish={enableEnglish}
-            />
+            {isLoading ? <LoadingCards /> :
+                <SearchResult
+                    verses={verses}
+                    enableBangla={enableBangla}
+                    enableArabic={enableArabic}
+                    enableEnglish={enableEnglish}
+                />}
 
         </Layout>
     )
+}
+
+function LoadingCards({ query }) {
+    if (!query) {
+        return (
+            <Flex justify="center" align="center" style={{ height: "80svh" }}>
+                <Layout style={{ maxWidth: "700px", padding: "20px", textAlign: "center" }}>
+                    <Typography>
+                        <InfoCircleFilled style={{ fontSize: "40px" }} />
+                    </Typography>
+                    <Typography.Title level={3}>Search Quran by semantic meaning </Typography.Title>
+                    <Typography.Paragraph strong>
+                        Enter something in the search field to find your ayah
+                    </Typography.Paragraph>
+                    <Typography.Link href="/graph">Explore Graph <ArrowRightOutlined /></Typography.Link>
+                    <Divider />
+
+                </Layout>
+            </Flex>
+        )
+    }
+    return Array.from({ length: 50 }, (_, index) => (
+        <Skeleton key={index} />
+    ))
+
 }
 
 
