@@ -8,8 +8,9 @@ import { get_projection } from "../utils/backend";
 const { Title, Paragraph, Link } = Typography;
 
 export default function GraphView() {
-    const graphRef = useForw(null)
+    const graphRef = useRef(null)
     const [vectors, setVectors] = useState(null)
+    const [loading, setLoading] = useState(true)
     const [open, setOpen] = useState(false)
     const [selectedNode, setSelectedNode] = useState(null)
     //
@@ -40,7 +41,7 @@ export default function GraphView() {
 
 
     function handleClick(node) {
-        
+
         setSelectedNode(node)
         setOpen(true)
 
@@ -85,27 +86,30 @@ export default function GraphView() {
 
     return (
         <div style={{ background: "black" }}>
-            {vectors ?
 
-                <ForceGraphWrapper
-                    ref={graphRef}
-                    nodeOpacity={.8}
-                    graphData={vectors}
-                    cooldownTicks={0}
-                    cooldownTime={0}
-                    nodeRelSize={10}
-                    enableNodeDrag={false}
-                    nodeLabel={node => node.surah_name}
-                    // nodeAutoColorBy="surah_name"
-                    nodeAutoColorBy={node => getUniqueColor(node.verse_en[0].chapter)}
-                    nodeResolution={15}
-                    // onNodeClick={handleClick}
-                    onNodeClick={doubleClickHandler}
-                /> :
-                <Flex style={{height:"100vh"}} justify="center" align="center">
+            <ForceGraphWrapper
+                onEngineStop={() => { setLoading(false) }}
+                ref={graphRef}
+                nodeOpacity={.8}
+                graphData={vectors}
+                cooldownTicks={0}
+                cooldownTime={0}
+                nodeRelSize={10}
+                enableNodeDrag={false}
+                nodeLabel={node => node.surah_name}
+                // nodeAutoColorBy="surah_name"
+                nodeAutoColorBy={node => getUniqueColor(node.verse_en[0].chapter)}
+                nodeResolution={15}
+                // onNodeClick={handleClick}
+                onNodeClick={doubleClickHandler}
+            />
+
+            {(!vectors || loading) &&
+                <Flex style={{ height: "100vh" }} justify="center" align="center">
                     <Spin indicator={<LoadingOutlined style={{ fontSize: 100 }} spin />} />
                 </Flex>
             }
+
             <FloatButton.Group
                 type="primary"
                 icon={<MenuOutlined />}

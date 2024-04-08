@@ -6,6 +6,7 @@ import { useState } from "react";
 import { getLanguageSettings, getQueries, saveLanguageSettings, saveQuery } from "../utils/LocalSettings";
 import { search_similar_quran_verses } from "../utils/backend";
 import { ArrowRightOutlined, InfoCircleFilled } from "@ant-design/icons";
+import SearchSuggestions from "../utils/SearchSuggestion";
 
 
 const { Title, Paragraph, Text, Link } = Typography;
@@ -125,7 +126,7 @@ function LoadingCards({ query }) {
                     </Typography.Paragraph>
                     <Typography.Link href="/graph">Explore Graph <ArrowRightOutlined /></Typography.Link>
                     <Divider />
-
+                    <SearchSuggestions/>
                 </Layout>
             </Flex>
         )
